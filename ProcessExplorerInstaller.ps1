@@ -89,6 +89,8 @@ $file = $sDir + "\temp\ProcessExplorer.zip"
 mkdirs
 Get-Webclient $url $file
 Start-Sleep -s 2
+# Close Process Explorer
+Get-Process procexp* | stop-process –force
 Expand-Zip $file "$sDir\ProcessExplorer\" -HideProgressDialog -OverwriteExistingFiles
 Remove-Item "$sDir\temp\" -recurse
 start-process $sDir\ProcessExplorer\procexp.exe -ArgumentList "/AcceptEula /t" ##Accepts EULA and starts minimized
