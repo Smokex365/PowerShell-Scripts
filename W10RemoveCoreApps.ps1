@@ -34,8 +34,6 @@ Get-AppxPackage *people* | Remove-AppxPackage
 Get-AppxPackage *windowsphone* | Remove-AppxPackage
 #Photos: 
 #Get-AppxPackage *photos* | Remove-AppxPackage
-#Store: 
-#Get-AppxPackage *windowsstore* | Remove-AppxPackage
 #Sports: 
 Get-AppxPackage *bingsports* | Remove-AppxPackage
 #Voice Recorder: 
@@ -44,3 +42,8 @@ Get-AppxPackage *soundrecorder* | Remove-AppxPackage
 #Get-AppxPackage *bingweather* | Remove-AppxPackage
 #Xbox: 
 #Get-AppxPackage *xbox* | Remove-AppxPackage
+
+#Store: 
+#WARNING: Removing the Store app will prevent you from reinstalling any modern apps.
+#Leave it installed unless you know what you're doing!
+#Get-AppxPackage *windowsstore* | Remove-AppxPackage
