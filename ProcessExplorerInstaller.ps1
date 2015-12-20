@@ -5,6 +5,13 @@
 ####	s1: http://nyquist212.wordpress.com/2013/09/23/powershell-webclient-example/
 ####	s2: http://sharepoint.smayes.com/2012/07/extracting-zip-files-using-powershell/
 
+#Checks for Administrator priveleges and opens an elevated prompt is user has Administrator rights
+If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
+{   
+	$arguments = "& '" + $myinvocation.mycommand.definition + "'"
+	Start-Process powershell -Verb runAs -ArgumentList $arguments
+	Break
+}
 
 # s1 
 Function Get-Webclient ($urla, $out) {
