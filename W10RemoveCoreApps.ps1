@@ -42,6 +42,8 @@ Get-AppxPackage *soundrecorder* | Remove-AppxPackage
 #Get-AppxPackage *bingweather* | Remove-AppxPackage
 #Xbox: 
 #Get-AppxPackage *xbox* | Remove-AppxPackage
+#Sway
+Get-AppxPackage *sway* | Remove-AppxPackage
 
 #Store: 
 #WARNING: Removing the Store app will prevent you from reinstalling any modern apps.
