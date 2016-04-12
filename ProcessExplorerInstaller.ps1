@@ -34,7 +34,7 @@ function Expand-Zip (
     [ValidateNotNullOrEmpty()][string]$DestinationFolderPath,
     [switch]$HideProgressDialog,
     [switch]$OverwriteExistingFiles
-) {
+	) {
     # Ensure that the zip file exists, the destination path is a folder, and the destination folder
     # exists. The code to expand the zip file will *only* execute if the three conditions above are
     # true.
@@ -82,7 +82,7 @@ function Expand-Zip (
 function mkdirs {
 	mkdir $sDir\temp\ -force > $null
 	mkdir $sDir\ProcessExplorer\ -force > $null
-    mkdir "$start\Process Explorer" -force > $null
+	mkdir "$start\Process Explorer" -force > $null
 }
 
 function shortcuts ($target, $link) {
@@ -98,7 +98,7 @@ function shortcuts ($target, $link) {
 # Variables
 $sDir = $env:programfiles
 $uDir = $env:allusersprofile
-$start = [Environment]::GetFolderPath('CommonStartMenu') + "\Programs\Process Explorer"
+$start = [Environment]::GetFolderPath('CommonStartMenu') + "\Process Explorer"
 $url = "http://download.sysinternals.com/files/ProcessExplorer.zip"
 $file = $sDir + "\temp\ProcessExplorer.zip"
 
