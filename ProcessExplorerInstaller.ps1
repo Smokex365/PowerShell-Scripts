@@ -82,22 +82,39 @@ function Expand-Zip (
 function mkdirs {
 	mkdir $sDir\temp\ -force > $null
 	mkdir $sDir\ProcessExplorer\ -force > $null
+    mkdir "$start\Process Explorer" -force > $null
 }
+
+function shortcuts ($target, $link) {
+	# Create a Shortcut with Windows PowerShell
+	$TargetFile = $target
+	$ShortcutFile = $link
+	$WScriptShell = New-Object -ComObject WScript.Shell
+	$Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
+	$Shortcut.TargetPath = $TargetFile
+	$Shortcut.Save()
+	}
 
 # Variables
 $sDir = $env:programfiles
 $uDir = $env:allusersprofile
+$start = [Environment]::GetFolderPath('CommonStartMenu') + "\Programs\Process Explorer"
 $url = "http://download.sysinternals.com/files/ProcessExplorer.zip"
 $file = $sDir + "\temp\ProcessExplorer.zip"
 
 # Makes directories:
-#	ProcessExplorer directory in Program Files according to Environment variable\
-#	temp directory in Program Files for download
+# ProcessExplorer directory in Program Files according to Environment variable\
+# temp directory in Program Files for download
 mkdirs
 Get-Webclient $url $file
 Start-Sleep -s 2
-# Close Process Explorer
-Get-Process procexp* | stop-process –force
+# Closes Process Explorer if running
+# Get-Process procexp* | stop-process –force
 Expand-Zip $file "$sDir\ProcessExplorer\" -HideProgressDialog -OverwriteExistingFiles
 Remove-Item "$sDir\temp\" -recurse
-start-process $sDir\ProcessExplorer\procexp.exe -ArgumentList "/AcceptEula /t" ##Accepts EULA and starts minimized
+# Creates Start Menu shorcuts
+shortcuts "$sDir\ProcessExplorer\Eula.txt" "$start\EULA.lnk"
+shortcuts "$sDir\ProcessExplorer\procexp.chm" "$start\Process Explorer Help.lnk"
+shortcuts "$sDir\ProcessExplorer\procexp.exe" "$start\Process Explorer.lnk"
+# Accepts EULA and starts minimized
+start-process $sDir\ProcessExplorer\procexp.exe -ArgumentList "/AcceptEula /t" 
