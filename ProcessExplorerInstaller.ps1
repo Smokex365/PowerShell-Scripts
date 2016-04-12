@@ -98,7 +98,7 @@ function shortcuts ($target, $link) {
 # Variables
 $sDir = $env:programfiles
 $uDir = $env:allusersprofile
-$start = [Environment]::GetFolderPath('CommonStartMenu')
+$start = [Environment]::GetFolderPath('CommonStartMenu') + "\Programs"
 $url = "http://download.sysinternals.com/files/ProcessExplorer.zip"
 $file = $sDir + "\temp\ProcessExplorer.zip"
 
