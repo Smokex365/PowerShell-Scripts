@@ -97,7 +97,7 @@ function shortcuts ($target, $link) {
 
 # Variables
 $sDir = $env:programfiles
-$uDir = $env:allusersprofile
+#$uDir = $env:allusersprofile
 $start = [Environment]::GetFolderPath('CommonStartMenu') + "\Programs"
 $url = "http://download.sysinternals.com/files/ProcessExplorer.zip"
 $file = $sDir + "\temp\ProcessExplorer.zip"
@@ -109,7 +109,7 @@ mkdirs
 Get-Webclient $url $file
 Start-Sleep -s 2
 # Closes Process Explorer if running
-# Get-Process procexp* | stop-process –force
+Get-Process procexp* | stop-process –force
 Expand-Zip $file "$sDir\ProcessExplorer\" -HideProgressDialog -OverwriteExistingFiles
 Remove-Item "$sDir\temp\" -recurse
 # Creates Start Menu shorcuts
@@ -117,4 +117,4 @@ shortcuts "$sDir\ProcessExplorer\Eula.txt" "$start\Process Explorer\EULA.lnk"
 shortcuts "$sDir\ProcessExplorer\procexp.chm" "$start\Process Explorer\Process Explorer Help.lnk"
 shortcuts "$sDir\ProcessExplorer\procexp.exe" "$start\Process Explorer\Process Explorer.lnk"
 # Accepts EULA and starts minimized
-start-process $sDir\ProcessExplorer\procexp.exe -ArgumentList "/AcceptEula /t" 
+start-process $sDir\ProcessExplorer\procexp.exe -ArgumentList "/AcceptEula /t"
