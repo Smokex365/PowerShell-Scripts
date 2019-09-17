@@ -35,10 +35,9 @@ if ($sstat.status -eq "running"){
 	}
 elseif ($sstat.status -eq "stopped"){
 	write-output "GoodSync Server is already Stopped"
-	"continuing....."
+	"Continuing....."
 	""
 	}
-# Disables GoodSync Server service
 if ($sstart.startmode -ne "disabled"){
 	write-output "Setting GoodSync Server service to Disabled"
 	set-service gsserver -startuptype disabled
