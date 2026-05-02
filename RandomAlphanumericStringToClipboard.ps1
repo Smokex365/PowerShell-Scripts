@@ -1,7 +1,6 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-
 $form = New-Object System.Windows.Forms.Form
 $form.Text = 'Enter Random Number Length'
 $form.Width = 300
@@ -9,8 +8,8 @@ $form.Height = 150
 $form.StartPosition = 'CenterScreen'
 $form.Add_Load({
     $form.Activate()
-  }
-)
+        }
+    )
 
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(10, 20)
